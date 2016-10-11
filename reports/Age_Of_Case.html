@@ -1,0 +1,313 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Age of Case</title>
+    <script src="../js/Age_Of_Case/chartjs102.js"></script>
+
+    <!--<script src="./js/Chart.bundle.js"></script>-->
+
+    <script src="../js/Age_Of_Case/moment.js"></script>
+    <!--<script src="./js/chartjs102.js"></script>-->
+    
+<!--
+    <script src="https://code.jquery.com/jquery-2.2.3.js"
+            integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4="
+            crossorigin="anonymous"></script>
+-->
+    <script src="../data/caseData_AY10-AY15.js"></script>
+    <script src="../js/Age_Of_Case/jquery223.js"></script>
+    <script src="../js/Age_Of_Case/Age_Of_Case.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../css/Age_Of_Case/Age_Of_Case.css">
+
+<meta charset="UTF-8">
+</head>
+
+<body>
+
+
+<div id="selectorWraper">
+    <div id="selectDiv">
+        <span class="chartTitleTxt_onTop">Select Academic year:</span>
+        <select name="academicYear" id="aySelect" class="select"> 
+            <option id="selectiontbn" class ="selector" value='ayall' selected="selected" >All</option>
+        </select>
+    </div>
+
+    <div id="selectDepPub">
+         <form>
+            <input id="radiobtn" type="radio" name="alldp" value="alldp" checked="checked">All<br>
+            <input type="radio" name="alldp" value="dept">Department<br>
+            <input type="radio" name="alldp" value="pub">Publisher<br>
+        </form> 
+    </div>
+</div>
+
+<script>
+
+
+
+    $('input[type="radio"]').click(function(){
+
+        if($(this).attr("value")=="alldp"){
+            $("#chartArea_all").show();
+            $("#lineDiv").hide();
+            console.log("ALLDIPPED^$^$^$^$^$^$")
+        }
+           
+            else {
+                $("#chartArea_all").hide();
+                $("#lineDiv").show();
+                console.log("SWITCHEDDDDDD^$^$^$^$^$^$")
+            }
+    });
+
+
+
+
+</script>
+
+<!--
+Hiding functionality
+<script type="text/javascript">
+    $("#uCasesNB").click(function(){
+    $("#lessTenCase_NOay_breakdownCharts").slideUp();
+    $("#uniqueCase_NOay_breakdownCharts").slideToggle();
+    });
+</script>
+-->
+
+<div id="numberBoxRowContainer">
+    <div id="uCasesNB">
+        <div class="numberBoxes">
+            <span id="uCasesAll"></span>
+                <div class="varText">
+                    Total <br />
+                    Unique Cases
+                </div>
+        </div>
+    </div>
+    
+    <div id="lessThanTenNB">
+        <div class="numberBoxes">
+            <span id="lessTenAll"></span>
+                <div class="varText">
+                    Cases Less Than<br />
+                    10 Years Old
+                </div>
+        </div>
+    </div>
+
+    <div id="noPubNB">
+        <div class="numberBoxes">
+            <span id="noPubAll"></span>
+                <div class="varText">
+                    Cases with <br />
+                    No Publication Date
+                </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="chartArea_all">
+    <br />
+    <span class="chartTitleTxt_onTop">Current age of unique cases used during selected year</span>
+    <!--loads with All Selected-->
+    <div id="uniqueCase_NOay_breakdownCharts">
+        <div class="chartWithText">
+            <div id="barChartCanvasUnique_NOay">
+                <canvas id="barCanvasUnique_NOay"></canvas>
+            </div>
+        </div>
+
+        <!--with publication date donut chart-->
+        <div class="pubDatePieChart">
+            <canvas id="pieCanvas"></canvas>
+        </div>
+    </div>
+
+
+    <!--reloads with data from selected AY-->
+
+    <div id="uniqueCase_breakDownCharts">
+        <div class="chartWithText">
+            <div id="barChartCanvasUnique">
+                <canvas id="barCanvasUnique"></canvas>
+            </div>
+        </div>
+
+        <!--green pie chart-->
+        <div class="pubDatePieChart">
+            <canvas id="pieCanvas2"></canvas>
+        </div>
+    </div>
+</div>
+
+<div id="chartArea_dept">
+    <span class="chartTitleTxt_onTop">Current age of unique cases used during selected year</span><br />
+    <div id="lineDiv">
+        <canvas id="lineCanvas"></canvas>
+    </div>
+
+    <div id="lineLegend">
+        <table class="tg">
+            <tr>
+                <td class="tg-dp">Coser</td>
+                <td>Degree Programs<br></td>
+            </tr>
+            <tr>
+                <td class="tg-ee">Coser</td>
+                <td>Executive Education<br></td>
+            </tr>
+        </table>
+
+    </div>
+
+
+
+</div>
+
+<div id ="extraBars">
+    <div id="barChartCanvas">
+        <h1>Total course/ program sessions that used cases in seleced ay</h1>
+        <canvas id="barCanvas"></canvas>
+    </div>
+    <br />
+
+
+    <br />
+    <div id="barChartCanvasUniqueEE">
+        <h1>Number of unique cases used during selected year in EE</h1>
+        <canvas id="barCanvasUniqueEE"></canvas>
+    </div>
+    <br />
+    <div id="barChartCanvasUniqueDP">
+        <h1>Number of unique cases used during selected year in EE</h1>
+        <canvas id="barCanvasUniqueDP"></canvas>
+    </div>
+
+
+     
+     <div id="legendDiv"></div>
+</div>
+
+<script>
+    //Populate the selection box with the unuqie values
+    var yearSelect = document.getElementById('aySelect');
+    var fragment = document.createDocumentFragment();
+
+    uniqueAyArr_Format.forEach(function(ayEach, index) {
+        var createOption = document.createElement('option');
+        createOption.innerHTML = ayEach;
+        createOption.value = ayEach;
+        fragment.appendChild(createOption);
+    });
+
+    yearSelect.appendChild(fragment);
+
+
+    function windowLoad () {
+        getPies();
+
+        radiobtn = document.getElementById("radiobtn");
+        radiobtn.checked = true;
+
+        selectionbtn = document.getElementById("selectiontbn");
+        selectionbtn.selected = true;
+
+        var ddl = document.getElementById("aySelect");
+        var selectedValue = ddl.options[ddl.selectedIndex].value;
+        if (selectedValue == "void") {
+            $("#numberBoxRowContainer").hide();
+            $("#chartArea_all").hide();
+        }
+
+    }
+    window.onload = windowLoad();
+    console.log("WINDOWLOADDEDDDD");
+
+
+
+
+
+    //When the Academic Year selection is changed, do the following:
+    $(document).on('change', '#aySelect', function(e) {
+
+
+        radiobtn = document.getElementById("radiobtn");
+        radiobtn.checked = true;
+        //use selection as currentYear var
+        currentYear = this.options[e.target.selectedIndex].text
+        console.log("9877^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+        console.log(currentYear);
+
+
+
+            if (currentYear == "All") {
+
+                window.location.reload();
+                
+                console.log("ELSE444%!@@@@@@@@@@@@@@9999999999999999999999999999999999%");
+
+                $("#uniqueCase_NOay_breakdownCharts").show();
+                $("#uniqueCase_breakDownCharts").hide();        
+                $("#numberBoxRowContainer").show();
+                $("#chartArea_all").show();
+                
+                
+            }
+            else if (!isNaN(currentYear)) {
+                console.log("ELSE444%!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%");
+
+                $("#uniqueCase_breakDownCharts").show();
+                $("#uniqueCase_NOay_breakdownCharts").hide();
+                $("#numberBoxRowContainer").show();
+                $("#chartArea_all").show();
+                
+            }
+
+
+        
+
+        //remove the canvas element, clearing the chart, and re insert and new blank canvas element in its place
+        $('#barChartCanvas').empty();
+        $('#barChartCanvas').append('<canvas id="barCanvasUnique"></canvas>');
+        
+
+      
+        //run the funtion in ./js/age_of_case.js to populate the vars and draw the chart
+        getData();
+
+        function revertAll (){
+            if (currentYear == "All" ) {
+                console.log("*(#(&*#(#&*HERE######");
+                document.getElementById("uCasesAll").innerHTML = Uall_NOay;
+                document.getElementById("noPubAll").innerHTML = UnoPubDate_NOay;
+                document.getElementById("lessTenAll").innerHTML = UlessThanTen_NOay;
+                //$("#uniqueCase_NOay_breakdownCharts").show();
+                //$("barChartCanvasUnique").hide();
+            }
+        }
+        revertAll();
+        console.log("reverted");
+
+        
+        //reset var each time menu is changed - this var feeds the doughnut chart
+        noPubDate = 0;
+    });
+
+</script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>EE vs. DP</title>
+    <!-- JSON data-->
+    <script src="../data/caseData_AY10-AY15.js"></script>
+
+    <script src="../js/EE_vs_DP/chartjs102.js"></script>
+    <script src="../js/EE_vs_DP/moment.js"></script>
+    
+    <script src="../js/EE_vs_DP/jquery223.js"></script>
+    <script src="../js/EE_vs_DP/ee_vs_dp.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../css/EE_vs_DP/EE_vs_DP.css">
+
+    <meta charset="UTF-8">
+</head>
+
+<body>
+
+
+
+<!--Bar chart container-->
+
+<div id="lineDiv">
+    <canvas id="lineCanvas"></canvas>
+</div>
+
+ 
+<!--<div id="legendDiv"></div>-->
+<script>
+var allYears = [];
+var degNums = [];
+var execNums = [];
+var otherNums = [];
+
+    var uniqueYears = {};
+    for (var i = 0; i < caseData.length; ++i) {
+        if (typeof(uniqueYears[caseData[i].AY]) == "undefined"){
+            allYears.push(caseData[i].AY);
+        }
+             uniqueYears[caseData[i].AY] = 0;
+    }
+    allYears.sort();
+window.onload = getLineData();
+
+    //Populate the selection box with the unuqie values
+    /*
+    var pubBoxes = document.getElementById('aySelect');
+    var fragment = document.createDocumentFragment();
+
+    ayGet.forEach(function(ayEach, index) {
+        var createOption = document.createElement('option');
+        createOption.innerHTML = ayEach;
+        createOption.value = ayEach;
+        fragment.appendChild(createOption);
+    });
+
+    yearSelect.appendChild(fragment);
+
+    window.onload = getData();
+
+
+    //When the Academic Year selection is changed, do the following:
+    $(document).on('change', '#aySelect', function(e) {
+
+        //use selection as currentYear var
+        currentYear = this.options[e.target.selectedIndex].text
+
+        //remove the canvas element, clearing the chart, and re insert and new blank canvas element in its place
+        $('#barChartCanvas').empty();
+        $('#barChartCanvas').append('<canvas id="barCanvas"></canvas>');
+        $('#pieChartCanvas').empty();
+        $('#pieChartCanvas').append('<canvas id="pieCanvas"></canvas>');
+        $('#pieChartCanvas2').empty();
+        $('#pieChartCanvas2').append('<canvas id="pieCanvas2"></canvas>');
+
+        //run the funtion in ./js/age_of_case.js to populate the vars and draw the chart
+        getData();
+        
+        //reset var each time menu is changed - this var feeds the doughnut chart
+        noPubDate = 0;
+
+        console.log("currentYear:" + currentYear);
+    });
+*/
+</script>
+<br />
+<br />
+<div id="legendDiv">
+<table class="tg">
+  <tr>
+    <th class="tg-kj4x"></th>
+    <th class="tg-yw4l">HBS</th>
+  </tr>
+  <tr>
+    <td class="tg-6bis"></td>
+    <td class="tg-yw4l">HKS</td>
+  </tr>
+</table>
+</div>
+
+</body>
+
+</html>
+
+
+
+
+
+
+

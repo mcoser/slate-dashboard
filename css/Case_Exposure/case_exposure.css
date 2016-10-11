@@ -1,0 +1,164 @@
+body {
+    margin: 6em;
+}
+
+
+/* Table formatting */
+.caseTable {
+    margin:0px;padding:0px;
+    width:100%;
+    box-shadow: 10px 10px 5px #888888;
+    border:1px solid #000000;
+    
+
+}
+
+.caseTable table{
+    border-collapse: collapse;
+        border-spacing: 0;
+    width:100%;
+    height:100%;
+    margin:0px;padding:0px;
+}
+.caseTable tr:hover td {
+background-color: #c6bf70;
+}
+
+.caseTable tr:nth-child(odd){ background-color:#ffffff; }
+.caseTable tr:nth-child(even)    { background-color:#cccccc; }.caseTable td{
+    vertical-align:middle;
+    
+    
+    border:1px solid #000000;
+    border-width:0px 1px 1px 0px;
+    text-align:left;
+    padding:7px;
+    font-size:12px;
+    font-family:verdana;
+    font-weight:normal;
+    color:#000000;
+}.caseTable tr:last-child td{
+    border-width:0px 1px 0px 0px;
+}.caseTable tr td:last-child{
+    border-width:0px 0px 1px 0px;
+}.caseTable tr:last-child td:last-child{
+    border-width:0px 0px 0px 0px;
+}
+.caseTable th{
+    background:-o-linear-gradient(bottom, #a71930 5%, #a71930 100%);    
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #a71930), color-stop(1, #a71930) );
+    background:-moz-linear-gradient( center top, #a71930 5%, #a71930 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#a71930", endColorstr="#a71930");  
+    background: -o-linear-gradient(top,#a71930,a71930);
+    background-color:#a71930;
+    border:0px solid #000000;
+    text-align:center;
+    border-width:0px 0px 1px 1px;
+    font-size:14px;
+    font-family:verdana;
+    font-weight:bold;
+    color:#ffffff;
+}
+
+
+/* Excel button formatting */
+.button {
+    float: right;
+    margin-right: 2em;
+    margin-bottom: 2em;
+    display: inline-block;
+
+    text-align: center;
+    vertical-align: middle;
+    padding: 7px 19px;
+    border: 1px solid #00333f;
+    background: #003946;
+    background: -webkit-gradient(linear, left top, left bottom, from(#003946), to(#003946));
+    background: -moz-linear-gradient(top, #003946, #003946);
+    background: linear-gradient(to bottom, #003946, #003946);
+    font: normal normal normal 14px verdana;
+    color: #ffffff;
+    text-decoration: none;
+}
+.button:hover,
+.button:focus {
+    border: 1px solid #003946;
+    background: #004454;
+    background: -webkit-gradient(linear, left top, left bottom, from(#004454), to(#004454));
+    background: -moz-linear-gradient(top, #004454, #004454);
+    background: linear-gradient(to bottom, #004454, #004454);
+    color: #ffffff;
+    text-decoration: none;
+}
+.button:active {
+    background: #00222a;
+    background: -webkit-gradient(linear, left top, left bottom, from(#00222a), to(#003946));
+    background: -moz-linear-gradient(top, #00222a, #003946);
+    background: linear-gradient(to bottom, #00222a, #003946);
+}
+.button:before{
+    content:  "\0000a0";
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    line-height: 16px;
+    margin: 0 4px -6px -4px;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    background: url("../../img/export.png");
+    /*
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACUklEQVQ4jY2Tz0uUYRDHP8/zvlsqGWlKEK4RQkE/sIMUIlkUeVCIQMH+gXJF0osQGatSSHQKT2507RIkFEqR4EKBhfbjUKctENFSk/JHm67v+z7PTod1RTtsDcxhZpgv852ZrxIRAJp7Xw4AEXJb7FHvmdZtGRFBRGiKxmVhJZDvK77ML/syt+TL3JIn3xYz/vWnJ03RuDRF4wPZHhHBzQKlbRoFfJxJYdOCsWCsYCWNsULNoUK01pjARBpvjjLYd74VQGcBrLEoBa5WaK1wHHAchVYax1EkUxYAN+RijY1cuj4yAKDanjbIP3gD0H7yMdHY+Ga8llwFiLkmSBNrfJazOTJYjwYqyotJCxTmOyAljE1MRlzjGbr77zC5+oXZ1BTx23EAGvousphcZJ8UUVJpSMx7nKoMYyWN3djJq7HPaH/dcKvjBtVVJ9i1J0RtZw31XXX8+DXLjnzhyd0h/HWD64DrKBylcR0FgAkMrrcWANBW147KSzMx9pap6WlKS/cy3PMCn994awGOVoAACms1WoENDK6fMptch1+PUHW8Gr8gxMzyJFcfthAO7cdPGUJaZT8HhQIUJjDo7ARnu2pZWF1g9N1zKsJlHCwP82HiPdHmnswEjiKkFY5WuA4otYXClc4WinYWU7A7D0lqEp8ShA+UUV6yyuXuRjwv2OQNYMgAZCisGx703895xtMdR3G12pZTKKyxuMYzVEcO5wQANpa4FQCsMbhvYgkFcOxCv4wPXSP7lgJkhCqIZGJkQ3wbNWssKivnI+fu/Y+c/7bYH+o4JT+IUAC9AAAAAElFTkSuQmCC") no-repeat left center transparent;
+    */
+    background-size: 100% 100%;
+}
+
+
+
+
+#mainselection select {
+   border: 0;
+   color: #EEE;
+   background: transparent;
+   font-size: 20px;
+   font-weight: bold;
+   padding: 2px 10px;
+   width: 378px;
+   *width: 350px;
+   *background: #58B14C;
+   -webkit-appearance: none;
+}
+
+#mainselection {
+   overflow:hidden;
+   width:350px;
+   -moz-border-radius: 9px 9px 9px 9px;
+   -webkit-border-radius: 9px 9px 9px 9px;
+   border-radius: 9px 9px 9px 9px;
+   box-shadow: 1px 1px 11px #330033;
+   background: #58B14C url("../../img/selectDown.png") no-repeat scroll 319px center;
+}
+
+
+/* -------------------- Select Box Styles: stackoverflow.com Method */
+/* -------------------- Source: http://stackoverflow.com/a/5809186 */
+select.select {
+   -webkit-appearance: button;
+   -webkit-border-radius: 2px;
+   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+   -webkit-padding-end: 20px;
+   -webkit-padding-start: 2px;
+   -webkit-user-select: none;
+   background-image: url(.img/selectDown.png), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
+   background-position: 97% center;
+   background-repeat: no-repeat;
+   border: 1px solid #AAA;
+   color: #555;
+   font-size: inherit;
+   margin: 20px;
+   overflow: hidden;
+   padding: 5px 10px;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   width: 300px;
+}

@@ -1,0 +1,217 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Cases Taught at HKS</title>
+    <meta charset="UTF-8">
+
+    <!--Data-->
+    <script src="../data/caseData_AY10-AY15.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../css/Cases_Taught/Cases_Taught.css">
+    <link rel="stylesheet" type="text/css" href="../css/Cases_Taught/menu.css">
+    <link rel="stylesheet" type="text/css" href="../css/Cases_Taught/jqueryUI_1102.css">
+
+    <script src="../js/Cases_Taught/chartjs102.js"></script>
+    <script src="../js/Cases_Taught/moment.js"></script>
+    <script src="../js/Cases_Taught/jquery223.js"></script>
+    <script src="../js/Cases_Taught/Cases_Taught.js"></script>
+    <script src="../js/Cases_Taught/jqueryUI_1102.js" ></script>
+</head>
+
+<body style="padding-left: 3em; padding-right: 3em;">
+
+<!--Selector Menu-->
+<select class="select">
+    <option data-target="searchBy" value="searchBy" selected="selected">Search Database By: </option>
+    <option data-target="case" value="case">Case Title</option>
+    <option data-target="faculty" value="faculty">Faculty Member</option>
+    <option data-target="program" value="program">Program Name</option>
+    <option data-target="session" value="session">Session Code</option>
+    <option data-target="ay" value="ay">Academic Year</option>
+</select>
+<br />
+<br />
+
+
+<!--toggle the different search type divs, based on selection above-->
+    <script>
+        $('select option').each(function(){
+            $(this).click(function(){
+                $('div.show').toggleClass('show');
+                target = '#'+$(this).data('target');
+                $(target).toggleClass('show');
+            });
+        });
+    </script>
+
+<!--Search Options-->
+<div id="selectorDiv">
+	<div id="case" class="containers">
+		<label for="cases">Search Cases: </label>
+	  	<input id="cases">
+  	    <input class="Search" type="button" value="Search" onclick="caseFilter();" />
+	</div>
+    
+    <div id="faculty" class="containers">
+        <select name="faculty" class="select" id="facSelect"> 
+            <option class ="selector" value='' selected="selected">Select Faculty</option>
+        </select>
+        <input class="Search" type="button" value="Search" onclick="facultyFilter();" />
+    </div>
+
+	<div id="program" class="containers">
+        <select name="program" class="select" id="proSelect"> 
+            <option class ="selector" value='' selected="selected">Select Program</option>
+        </select>
+        <input class="Search" type="button" value="Search" onclick="programFilter();" />
+    </div>
+
+    <div id="session" class="containers">
+        <select name="session" class="select" id="sesSelect"> 
+            <option class ="selector" value='' selected="selected">Select Session</option>
+        </select>
+        <input class="Search" type="button" value="Search" onclick="sesFilter();" />
+    </div>
+    
+    <div id="ay" class="containers">
+        <select name="ay" class="select" id="aySelect"> 
+            <option class ="selector" value='' selected="selected">Select Academic Year</option>
+        </select>
+        <input class="Search" type="button" value="Search" onclick="ayFilter();" />
+    </div>
+</div>
+<br />
+<br />
+
+
+<!--Export button-->
+<a id="export" class="button" href="#">Export to CSV</a>
+
+
+<!--Populating each selection menu with unique values-->
+<script>
+    window.onload = function(){
+     document.getElementById("cases").value = "";
+    }
+     
+
+//========================
+// CASE SELECTOR MENU
+//========================
+    var caseSelect = document.getElementById('cases');
+    var fragment = document.createDocumentFragment();
+
+    allCase.forEach(function(caseEach, index) {
+        var createOption = document.createElement('option');
+        createOption.innerHTML = caseEach;
+        createOption.value = caseEach;
+        fragment.appendChild(createOption);
+    });
+
+    caseSelect.appendChild(fragment);
+
+    //autocomplete for case search
+    $(function() {
+        $( "#cases" ).autocomplete({
+      source: allCase
+        });
+    });
+
+
+//========================
+// FACULTY SELECTOR MENU
+//========================
+    var facSelect = document.getElementById('facSelect');
+    var fragment = document.createDocumentFragment();
+
+    allFac.forEach(function(facEach, index) {
+        var createOption = document.createElement('option');
+        createOption.innerHTML = facEach;
+        createOption.value = facEach;
+        fragment.appendChild(createOption);
+    });
+
+    facSelect.appendChild(fragment);
+
+
+//========================
+// PROGRAM SELECTOR MENU
+//========================
+    var proSelect = document.getElementById('proSelect');
+    var fragment = document.createDocumentFragment();
+
+    allPro.forEach(function(proEach, index) {
+        var createOption = document.createElement('option');
+        createOption.innerHTML = proEach;
+        createOption.value = proEach;
+        fragment.appendChild(createOption);
+    });
+
+    proSelect.appendChild(fragment);
+
+      
+//========================
+// SESSION SELECTOR MENU
+//========================
+    var sesSelect = document.getElementById('sesSelect');
+    var fragment = document.createDocumentFragment();
+
+    allSes.forEach(function(sesEach, index) {
+        var createOption = document.createElement('option');
+        createOption.innerHTML = sesEach;
+        createOption.value = sesEach;
+        fragment.appendChild(createOption);
+    });
+
+    sesSelect.appendChild(fragment);
+
+
+//========================
+// AY SELECTOR MENU
+//========================
+    var aySelect = document.getElementById('aySelect');
+    var fragment = document.createDocumentFragment();
+
+    allAy.forEach(function(ayEach, index) {
+        var createOption = document.createElement('option');
+        createOption.innerHTML = ayEach;
+        createOption.value = ayEach;
+        fragment.appendChild(createOption);
+    });
+
+    aySelect.appendChild(fragment);
+
+</script>
+	
+
+
+
+
+<br><br>
+<div id="mainTable">
+	<table class="caseTable" border="1">
+    <thead>
+        <th>Case Title</th>
+     
+        <th>Program</th>
+ 
+        <th>Session Title</th>
+
+        <th>Faculty Last Name</th>
+
+        <th>Faculty First Name</th>
+
+        <th>Academic Year</th>
+
+        <th>Publisher</th>
+
+        <th>Department</th>
+    </thead>
+    <tbody id="table">
+    </tbody>
+</table>
+</div>
+
+</body>
+</html>

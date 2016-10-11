@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Case Exposure</title>
+
+    <script src="../data/caseData_AY10-AY15.js"></script>
+
+    <script src="../js/Case_Exposure/chartjs102.js"></script>
+    <script src="../js/Case_Exposure/moment.js"></script>
+
+    <script src="../js/Case_Exposure/jquery223.js"></script>
+
+    <script src="../js/Case_Exposure/Case_Exposure.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../css/Case_Exposure/Case_Exposure.css">
+
+
+
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div id="ay" class="containers">
+        <select name="ay" class="select" id="aySelect"> 
+            <option class ="selector" value='' selected="selected">Select Academic Year</option>
+        </select>
+        <input class="Search" type="button" value="Search" onclick="whatYear();" />
+    </div>
+<script>
+
+
+//========================
+// AY SELECTOR MENU
+//========================
+    var aySelect = document.getElementById('aySelect');
+    var fragment = document.createDocumentFragment();
+
+    allAy.forEach(function(ayEach, index) {
+        var createOption = document.createElement('option');
+        createOption.innerHTML = ayEach;
+        createOption.value = ayEach;
+        fragment.appendChild(createOption);
+    });
+
+    aySelect.appendChild(fragment);
+    
+    
+</script>
+
+    <!--Export button-->
+    <a id="export" class="button" href="#">Export to CSV</a>
+
+<div id="mainTable">
+<table id="tableFull" class="caseTable" class="tablesorter">
+    <thead>
+        <th>Case Title</th>
+        <th>Total Exposure</th>
+     </thead>
+    <tbody id="table">
+        <tr></tr>
+    </tbody>
+</table>
+</div>
+
+<script>
+
+</script>
+</body>
+</html>

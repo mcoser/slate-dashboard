@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title> </title>
+    <script src=""></script>
+    <link rel="stylesheet" type="text/css" href="./css/index_style.css">
+    <meta charset="UTF-8">
+
+    <!--Toggle iframes j query-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+<div id="logo">
+    <img src="./img/front_logo.jpg">
+</div>
+
+<nav class="dropdownmenu">
+    <ul>
+        <div class="focusedLink">
+            <li id="usage"><span>Case Usage</span></li>
+        </div>
+
+        <div class="focusedLink">
+            <li id="age"><span>Age of Case</span></li>
+        </div>
+        
+        <div class="focusedLink">
+            <li id="expo"><span>Case Exposure</span></li>
+        </div>
+          <!--
+          <ul id="submenu">
+            <li><a href="http://www.jochaho.com/wordpress/difference-between-svg-vs-canvas/">Difference between SVG vs. Canvas</a></li>
+            <li><a href="http://www.jochaho.com/wordpress/new-features-in-html5/">New features in HTML5</a></li>
+            <li><a href="http://www.jochaho.com/wordpress/creating-links-to-sections-within-a-webpage/">Creating links to sections within a webpage</a></li>
+          </ul>
+-->
+        <li><a class="menuOutsideLinks" href="https://www.hks.harvard.edu/services/library/other-services/course-materials" target="_blank"><span>OCM Home</span></li>
+        <li><a class="menuOutsideLinks" href="https://www.hks.harvard.edu/degrees/teaching-courses/teaching/slate" target="_blank"><span>SLATE Home</span></li>
+    </ul>
+</nav>
+<br /><br /><br /><br />
+<!--
+<div id="developedBy">
+    <p>
+    Developed by the Cirriculum Usage Exploratory Team:
+    </p>
+    
+    <p>
+    Rebecca Coyne - Executive Education
+    <br />
+    Matthew Coser - Executive Education
+    </p>
+
+    <p>
+    Elizabeth Honer - Academic Dean's Office
+    </p>
+
+    <p>
+    Carolyn Wood - SLATE
+    <br />
+    Laura Madden - SLATE
+    <br />
+    Anjani Datla - SLATE
+    </p>
+</div>
+-->
+<div id="usage_iframe">
+    <iframe id="usage_iframeIF" src="./reports/Cases_taught.html" style="width:100%; height:40em"></iframe>
+        <script type="text/javascript">
+            $("#usage_iframe").hide();
+            $("#usage").click(function(){
+            var ifRefresh = document.getElementById('usage_iframeIF');
+            ifRefresh.contentWindow.location.reload(true);
+            $("#age_iframe").hide();
+            $("#expo_iframe").hide();
+            $("#usage_iframe").slideDown();
+            });
+        </script>
+</div>
+
+<div id="age_iframe">
+    <iframe id="age_iframeIF" src="./reports/Age_Of_Case.html" style="width:100%; height:40em"></iframe>
+        <script type="text/javascript">
+
+            $("#age_iframe").hide();
+            $("#age").click(function(){
+            var ifRefresh = document.getElementById('age_iframeIF');
+            ifRefresh.contentWindow.location.reload(true);
+            $("#usage_iframe").hide();
+            $("#expo_iframe").hide();
+            $("#age_iframe").slideDown();
+            });
+        </script>
+</div>
+
+<div id="expo_iframe">
+    <iframe id="expo_iframeIF" src="./reports/Case_Exposure.html" name ="" style="width:100%; height:40em"></iframe>
+        <script type="text/javascript">
+
+            $("#expo_iframe").hide();
+            $("#expo").click(function(){
+            var ifRefresh = document.getElementById('expo_iframeIF');
+            ifRefresh.contentWindow.location.reload(true);
+            $("#usage_iframe").hide();
+            $("#age_iframe").hide();
+            $("#expo_iframe").slideDown();
+            });
+        </script>
+</div>
+
+    <script>
+        var decacheiframe = document.getElementById("expo_iframe");
+        decacheiframe.contentWindow.location.href = decacheiframe.src;
+    </script>
+</body>
+
+</html>
